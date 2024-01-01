@@ -1,5 +1,6 @@
 package com.app.ws.controller;
 
+import com.app.ws.exceptions.UserServiceException;
 import com.app.ws.model.request.UpdateUserDetailRequestModel;
 import com.app.ws.model.request.UserDetailRequestModel;
 import com.app.ws.model.response.UserRest;
@@ -32,6 +33,11 @@ public class UserController {
                     MediaType.APPLICATION_JSON_VALUE
             })
     public ResponseEntity<UserRest> getUser(@PathVariable(value = "userId") String userId) {
+
+        if (true) {
+            throw new UserServiceException("A user service Exception is thrown.");
+        }
+
         if (users.containsKey(userId)) {
             return new ResponseEntity<>(users.get(userId), HttpStatus.OK);
         }
